@@ -10,6 +10,6 @@ public class GiveBack extends History{
 
     @Override
     void displayRecord() {
-        System.out.print(date + ": " + customer.name + " (" + customer.login + ") returned a book (ID: " + borrowedBookId +")");
+        System.out.println(date + ": " + customer.name + " (" + customer.login + ") returned a book (ID: " + borrowedBookId +")");
     }
 }

@@ -14,6 +14,6 @@ public class Borrow extends History{
 
     @Override
     void displayRecord() {
-        System.out.print(date + ": " + customer.name + " (" + customer.login + ") borrrowed a book (ID: " + borrowedBookId +")");
+        System.out.println(date + ": " + customer.name + " (" + customer.login + ") borrrowed a book (ID: " + borrowedBookId +")");
     }
 }
