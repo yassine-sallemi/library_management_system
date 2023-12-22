@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Customer extends User{
     private boolean premium = false;
@@ -10,6 +11,15 @@ public class Customer extends User{
         this.login = login;
         this.password = password;
         this.name = name;
+    }
+
+    public static Customer getCustomerByLogin(ArrayList<Customer> customers, String customerLogin){
+        for(Customer customer: customers){
+            if(Objects.equals(customer.getLogin(), customerLogin)){
+                return customer;
+            }
+        }
+        return null;
     }
 
     public static ArrayList<Customer> populate() {
