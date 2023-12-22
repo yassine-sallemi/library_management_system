@@ -11,11 +11,6 @@ public class Library {
     private final ArrayList<History> historyLogs = new ArrayList<>();
     private User currentUser = null;
 
-    public Library() {
-        Admin admin = new Admin("admin", "admin","admin");
-        admins.add(admin);
-    }
-
     // Menu
     void startMenu(){
         System.out.println("Library Management System");
