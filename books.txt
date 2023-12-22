@@ -1,0 +1,3 @@
+B001,1984,George Orwell,10
+B002,To Kill a Mockingbird,Harper Lee,15
+B003,The Great Gatsby,F. Scott Fitzgerald,8

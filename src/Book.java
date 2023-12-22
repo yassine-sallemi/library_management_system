@@ -1,3 +1,6 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,6 +49,10 @@ public class Book {
         }
     }
 
+    public Boolean isAvailable() {
+        return quantity > 0;
+    }
+
     public static Book searchById(List<Book> books, String id) {
         for (Book book : books) {
             if (book.getId().equals(id.toUpperCase())) {
@@ -73,5 +80,30 @@ public class Book {
             }
         }
         return foundBooks;
+    }
+
+    public static ArrayList<Book> populate() {
+        String textFile = "books.txt"; // Replace with your text file path
+        ArrayList<Book> books = new ArrayList<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(textFile))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] bookInfo = line.split(","); // Assuming fields are separated by commas
+
+                if (bookInfo.length >= 4) {
+                    String id = bookInfo[0];
+                    String title = bookInfo[1];
+                    String author = bookInfo[2];
+                    int quantity = Integer.parseInt(bookInfo[3]);
+
+                    Book book = new Book(id, title, author, quantity);
+                    books.add(book);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return books;
     }
 }

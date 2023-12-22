@@ -1,17 +1,19 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Borrow {
-    private Customer customer;
-    private ArrayList<Book> borrowedBooks = new ArrayList<>();
-    private LocalDate borrowDate;
+public class Borrow extends History{
     private int hasToReturnAfter;
 
-    public Borrow(Customer customer, LocalDate borrowDate, int hasToReturnAfter) {
+    public Borrow(Customer customer,String borrowedBookId,LocalDate date, int hasToReturnAfter) {
         this.customer = customer;
-        this.borrowDate = borrowDate;
+        this.borrowedBookId = borrowedBookId;
+        this.date = date;
         this.hasToReturnAfter = hasToReturnAfter;
     }
 
 
+    @Override
+    void displayRecord() {
+        System.out.print(date + ": " + customer.name + " (" + customer.login + ") borrrowed a book (ID: " + borrowedBookId +")");
+    }
 }
