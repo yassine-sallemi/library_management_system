@@ -8,7 +8,7 @@ public class Library {
     private final ArrayList<Admin> admins = Admin.populate();
     private final ArrayList<Customer> customers = Customer.populate();
     private final ArrayList<Book> books = Book.populate();
-    private final ArrayList<History> historyLogs = new ArrayList<>();
+    private final ArrayList<History> historyLogs = History.populate(customers);
     private User currentUser = null;
 
     // Menu
