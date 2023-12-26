@@ -40,6 +40,7 @@ public class Library {
         String name;
         String login;
         String password;
+        boolean premium;
 
         String id;
         String title;
@@ -67,8 +68,10 @@ public class Library {
                     login = scanner.nextLine();
                     System.out.print("- Password: ");
                     password = scanner.nextLine();
+                    System.out.print("- Premium (1 if yes, 0 otherwise): ");
+                    premium = Boolean.parseBoolean(scanner.nextLine());
 
-                    createAccount(login,password,name,false);
+                    createAccount(login,password,name,false, premium);
                     break;
                 case 2:
                     System.out.print("- Book ID: ");
@@ -101,7 +104,7 @@ public class Library {
                     System.out.print("- Password: ");
                     password = scanner.nextLine();
 
-                    createAccount(login,password,name,true);
+                    createAccount(login,password,name,true,false);
 
                     break;
                 case 6:
@@ -145,8 +148,9 @@ public class Library {
                     } catch (DateTimeParseException e) {
                         System.out.println("Error: Please enter a date in the format YYYY-MM-DD.");
                     }
-                    Borrow borrow = currentUser.borrowBook(books, id, date);
-                    historyLogs.add(borrow);
+                    Borrow borrow = ((Customer)currentUser).borrowBook(historyLogs, books, id, date);
+                    if(borrow != null)
+                        historyLogs.add(borrow);
                     break;
                 case 2:
                     System.out.print("- Book ID: ");
@@ -157,8 +161,9 @@ public class Library {
                     } catch (DateTimeParseException e) {
                         System.out.println("Error: Please enter a date in the format YYYY-MM-DD.");
                     }
-                    GiveBack giveBack = currentUser.giveBackBook(books, id, date);
-                    historyLogs.add(giveBack);
+                    GiveBack giveBack = ((Customer)currentUser).giveBackBook(historyLogs, books, id, date);
+                    if(giveBack != null)
+                        historyLogs.add(giveBack);
                     break;
                 case 3:
                     Book.displayBooks(books);
@@ -178,7 +183,7 @@ public class Library {
     }
 
     // Users management
-    void createAccount(String login, String password, String name, boolean isAdmin){
+    void createAccount(String login, String password, String name, boolean isAdmin, boolean premium){
 
         // Check if current user is admin
         if(!isAdmin(currentUser)){
@@ -187,25 +192,19 @@ public class Library {
         }
 
         // Check if the new login is unique
-        boolean loginIsUnique = true;
         for (Admin admin : admins){
             if(Objects.equals(admin.getLogin(), login)){
-                loginIsUnique = false;
-                break;
-            }
-        }
-        if(loginIsUnique){
-            for (Customer customer : customers){
-                if(Objects.equals(customer.getLogin(), login)){
-                    loginIsUnique = false;
-                    break;
-                }
-            }
-            if(!loginIsUnique){
                 System.out.println("This username is already used, try another one.");
                 return;
             }
         }
+        for (Customer customer : customers){
+            if(Objects.equals(customer.getLogin(), login)){
+                System.out.println("This username is already used, try another one.");
+                return;
+            }
+        }
+
 
         // Check if password is at least 4 characters
         if(password.length() < 4){
@@ -222,7 +221,7 @@ public class Library {
         }
         else{
             System.out.println("New customer has been added: " + name);
-            newUser = new Customer(login,password,name);
+            newUser = new Customer(login,password,name, premium);
             customers.add((Customer) newUser);
         }
     }

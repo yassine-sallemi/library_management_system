@@ -21,14 +21,6 @@ public class Book {
         return id;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
     public int getQuantity() {
         return quantity;
     }
@@ -60,26 +52,6 @@ public class Book {
             }
         }
         return null;
-    }
-
-    public static List<Book> searchByTitle(List<Book> books, String title) {
-        List<Book> foundBooks = new ArrayList<>();
-        for (Book book : books) {
-            if (book.getTitle().toLowerCase().contains(title.toLowerCase())) {
-                foundBooks.add(book);
-            }
-        }
-        return foundBooks;
-    }
-
-    public static List<Book> searchByAuthor(List<Book> books, String author) {
-        List<Book> foundBooks = new ArrayList<>();
-        for (Book book : books) {
-            if (book.getAuthor().toLowerCase().contains(author.toLowerCase())) {
-                foundBooks.add(book);
-            }
-        }
-        return foundBooks;
     }
 
     public static ArrayList<Book> populate() {

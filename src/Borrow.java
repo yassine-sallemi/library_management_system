@@ -1,19 +1,23 @@
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class Borrow extends History{
     private int hasToReturnAfter;
 
-    public Borrow(Customer customer,String borrowedBookId,LocalDate date, int hasToReturnAfter) {
+    public Borrow(Customer customer, String borrowedBookId, LocalDate date, int hasToReturnAfter) {
         this.customer = customer;
         this.borrowedBookId = borrowedBookId;
         this.date = date;
         this.hasToReturnAfter = hasToReturnAfter;
     }
 
+    public int getHasToReturnAfter() {
+        return hasToReturnAfter;
+    }
 
     @Override
     void displayRecord() {
-        System.out.println(date + ": " + customer.name + " (" + customer.login + ") borrrowed a book (ID: " + borrowedBookId +")");
+        LocalDate returnDate = date.plusDays(hasToReturnAfter);
+        System.out.print(date + ": " + customer.getName() + " (" + customer.getLogin() + ") borrowed a book (ID: " + borrowedBookId +")");
+        System.out.println("\tTo be returned before or on " + returnDate);
     }
 }
