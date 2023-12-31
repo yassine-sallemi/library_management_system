@@ -11,7 +11,7 @@ public class Admin extends User{
     }
 
     public static ArrayList<Admin> populate() {
-        String textFile = "admins.txt"; // Replace with your text file path
+        String textFile = "admins.txt";
         ArrayList<Admin> admins = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(textFile))) {

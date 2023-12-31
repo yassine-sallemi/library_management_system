@@ -85,7 +85,7 @@ public class Customer extends User{
     }
 
     public static ArrayList<Customer> populate() {
-        String textFile = "customers.txt"; // Replace with your text file path
+        String textFile = "customers.txt";
         ArrayList<Customer> customers = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(textFile))) {

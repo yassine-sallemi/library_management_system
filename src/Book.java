@@ -55,13 +55,13 @@ public class Book {
     }
 
     public static ArrayList<Book> populate() {
-        String textFile = "books.txt"; // Replace with your text file path
+        String textFile = "books.txt";
         ArrayList<Book> books = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(textFile))) {
             String line;
             while ((line = br.readLine()) != null) {
-                String[] bookInfo = line.split(","); // Assuming fields are separated by commas
+                String[] bookInfo = line.split(",");
 
                 if (bookInfo.length >= 4) {
                     String id = bookInfo[0];

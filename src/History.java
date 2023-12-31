@@ -31,13 +31,13 @@ public abstract class History {
     }
 
     public static ArrayList<History> populate(ArrayList<Customer> customers) {
-        String textFile = "historyLogs.txt"; // Replace with your text file path
+        String textFile = "historyLogs.txt";
         ArrayList<History> historyLogs = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(textFile))) {
             String line;
             while ((line = br.readLine()) != null) {
-                String[] bookInfo = line.split(","); // Assuming fields are separated by commas
+                String[] bookInfo = line.split(",");
 
                 String type;
                 Customer customer;
